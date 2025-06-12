@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nspTECH.pagos_facturacion.DTO.pagoPedidoDTO;
-import com.nspTECH.pagos_facturacion.DTO.pedidoDTO;
 import com.nspTECH.pagos_facturacion.model.pago;
 import com.nspTECH.pagos_facturacion.services.pagoServices;
 
@@ -51,6 +49,7 @@ public class pagoController {
         
     }
 
+    /* 
 @GetMapping("/PagoPedido/{ID_PEDIDO}")
     public ResponseEntity<?> pagoCliente(@PathVariable Long ID_PEDIDO){
 
@@ -70,7 +69,7 @@ public class pagoController {
         
     }
 
-
+*/
 
     @PostMapping
     public ResponseEntity<?> GuardarPago(@RequestBody pago pagoGuardar){
@@ -97,7 +96,14 @@ public class pagoController {
     public ResponseEntity<?> ActualizarPago(@PathVariable Long ID_USUARIO, @RequestBody pago pagoActualizar){
         try {
             pago pagoActualizado = pagoservice.BuscarUnPago(ID_USUARIO);
-            pagoActualizado.setID_PAGO(pagoActualizar.getID_PAGO());
+            pagoActualizado.setMetodo(pagoActualizar.getMetodo());
+            pagoActualizado.setEstado_pago(pagoActualizar.getEstado_pago());
+            pagoActualizado.setFecha_pago(pagoActualizar.getFecha_pago());
+            pagoActualizado.setTipo(pagoActualizar.getTipo());
+            pagoActualizado.setDescuentos(pagoActualizar.getDescuentos());
+            pagoActualizado.setIva(pagoActualizar.getIva());
+            pagoActualizado.setTotal(pagoActualizar.getTotal());
+            pagoActualizado.setID_PEDIDO(pagoActualizar.getID_PEDIDO());
             pagoservice.GuardarPago(pagoActualizar);
             return ResponseEntity.ok(pagoActualizado);
         } catch (Exception e) {
