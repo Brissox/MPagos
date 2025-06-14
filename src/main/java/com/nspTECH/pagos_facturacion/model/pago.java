@@ -41,16 +41,16 @@ public class pago {
     @Column(name= "tipo",nullable= false , length = 20)
     private String tipo;
 
-    @Column(name= "descuentos",nullable= false , length = 10)
-    private String descuentos;
+    @Column(name= "descuentos",nullable= true , precision= 10)
+    private int descuentos;
 
-    @Column(name= "iva",nullable= false , length = 10)
+    @Column(name= "iva",nullable= false , precision = 10)
     private int  iva;
 
-    @Column(name= "total",nullable= false , length = 10)
+    @Column(name= "total",nullable= false , precision = 10)
     private int total;
 
-    @Column(name = "ID_PEDIDO",nullable= false , length = 10)
+    @Column(name = "ID_PEDIDO",nullable= false , precision = 10)
     private Long ID_PEDIDO;
 
 
