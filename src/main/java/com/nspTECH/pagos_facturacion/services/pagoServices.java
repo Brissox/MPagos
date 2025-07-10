@@ -23,28 +23,27 @@ public class pagoServices {
         this.webClient = webClient;
     }
 
-    @Autowired
-    private pagoRepository pagorepository;
 
 
-    public pedidoDTO buscarpedido(long ID_PEDIDO){
+    public pedidoDTO buscarpedido(long ID_PAGO){
     pedidoDTO pedidodto = webClient.get()
-                                                .uri("/{ID_PEDIDO}",ID_PEDIDO)
+                                                .uri("/{ID_PEDIDO}",ID_PAGO)
                                                     .retrieve()
                                                     .bodyToMono(pedidoDTO.class)
                                                     .block();
     return pedidodto;
     }
 
-
+    @Autowired
+    private pagoRepository pagorepository;
 
 
     public List<pago> BuscarTodoPago(){
         return pagorepository.findAll();
     }
 
-    public pago BuscarUnPago(Long ID_USUARIO){
-        return pagorepository.findById(ID_USUARIO).get();
+    public pago BuscarUnPago(Long ID_PAGO){
+        return pagorepository.findById(ID_PAGO).get();
 
     }
 
